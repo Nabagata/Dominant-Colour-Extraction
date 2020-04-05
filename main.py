@@ -10,26 +10,22 @@ import glob
 
 NUM_CLUSTERS = 5
 
-files = glob.glob('images/Advert_06/*.jpg')
-for file in files:
-	print(file[17:])
-
 #	print('reading image')
-	im = Image.open(file)
-	im = im.resize((150, 150))      # optional, to reduce time
-	ar = np.asarray(im)
-	shape = ar.shape
-	ar = ar.reshape(scipy.product(shape[:2]), shape[2]).astype(float)
+im = Image.open('2.jpeg')
+im = im.resize((150, 150))      # optional, to reduce time
+ar = np.asarray(im)
+shape = ar.shape
+ar = ar.reshape(scipy.product(shape[:2]), shape[2]).astype(float)
 
 #	print('finding clusters')
-	codes, dist = scipy.cluster.vq.kmeans(ar, NUM_CLUSTERS)
+codes, dist = scipy.cluster.vq.kmeans(ar, NUM_CLUSTERS)
 #	print('cluster centres:\n', codes)
 
-	vecs, dist = scipy.cluster.vq.vq(ar, codes)         # assign codes
-	counts, bins = scipy.histogram(vecs, len(codes))    # count occurrences
+vecs, dist = scipy.cluster.vq.vq(ar, codes)         # assign codes
+counts, bins = scipy.histogram(vecs, len(codes))    # count occurrences
 
-	index_max = scipy.argmax(counts)                    # find most frequent
-	peak = codes[index_max]
-	colour = binascii.hexlify(bytearray(int(c) for c in peak)).decode('ascii')
+index_max = scipy.argmax(counts)                    # find most frequent
+peak = codes[index_max]
+colour = binascii.hexlify(bytearray(int(c) for c in peak)).decode('ascii')
 #	print('most frequent is %s (#%s)' % (peak, colour))
-	print(colour)
+print(colour)
