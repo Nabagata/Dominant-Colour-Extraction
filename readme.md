@@ -1,6 +1,6 @@
 ## Dominant Colour Extraction
 
-Dominant Colour extraction is an important Image Processing rask and it can be implemented using K-Means clustering
+Dominant Colour extraction is an important Image Processing task and it can be implemented using K-Means clustering
 
 Clustering can be defined as the task of identifying subgroups in the data such that data points in the same subgroup (cluster) are very similar while data points in different clusters are very different.
 
